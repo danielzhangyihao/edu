@@ -68,21 +68,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'edu.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'edu_db',
-        'USER': 'yihaozhang',
-        'PASSWORD': '19921009',
-        'HOST': '',
-        'PORT': '',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
