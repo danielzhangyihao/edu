@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from .forms import RegistrationForm
+import hashlib
+import random
+from django.utils.crypto import get_random_string
 
 # Create your views here.
 def register(request):
@@ -9,17 +13,11 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             datas={}
-            datas['username']=form.cleaned_data['username']
+            datas['last_name']=form.cleaned_data['last_name']
+            datas['first_name']=form.cleaned_data['first_name']
             datas['email']=form.cleaned_data['email']
             datas['password1']=form.cleaned_data['password1']
-
-            #We generate a random activation key
-            salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
-            usernamesalt = datas['username']
-            if isinstance(usernamesalt, unicode):
-                usernamesalt = usernamesalt.encode('utf8')
-            datas['activation_key']= hashlib.sha1(salt+usernamesalt).hexdigest()
-
+            datas['activation_key']= generate_activation_key(datas['email'])
             datas['email_path']="/ActivationEmail.txt"
             datas['email_subject']="Activation your account"
 
@@ -30,4 +28,9 @@ def register(request):
             return redirect(home)
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
-    return render(request, 'siteApp/register.html', locals())
+    return render(request, 'user/signup.html', locals())
+
+def generate_activation_key(username):
+    chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
+    secret_key = get_random_string(20, chars)
+    return hashlib.sha256((secret_key + username).encode('utf-8')).hexdigest()
