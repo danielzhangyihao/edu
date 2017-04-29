@@ -1,0 +1,1 @@
+{"status":"error","error":"ModuleBuildError","message":"Module build failed: SyntaxError: Unexpected token (25:6)\n\n  23 |   render() {\n  24 |     return (\n> 25 |       <Provider store={store}>\n     |       ^\n  26 |         <SampleAppContainer />\n  27 |       </Provider>\n  28 |     )\n","publicPath":"http://127.0.0.1:3000/assets/bundles/"}
