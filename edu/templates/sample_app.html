@@ -1,8 +1,15 @@
-{% extends "base.html" %}
 {% load render_bundle from webpack_loader %}
 
 {% block main %}
-<div id="SampleApp"></div>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+  </head>
+  <body>
+  	<div id="SampleApp"></div>
+  </body>
+</html>
 {% render_bundle 'vendors' %}
 {% render_bundle 'SampleApp' %}
 {% endblock %}
