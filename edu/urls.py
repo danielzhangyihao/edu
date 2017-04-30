@@ -15,10 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views import generic
 from user import views as user_views
 
 urlpatterns = [
 	url(r'^user/', include('user.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
     url(r'^admin/', admin.site.urls),
+    url(r'^$',
+        generic.TemplateView.as_view(template_name='sample_app.html')),
 ]
