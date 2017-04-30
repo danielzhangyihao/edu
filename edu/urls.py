@@ -22,8 +22,6 @@ urlpatterns = [
 	url(r'^user/', include('user.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
     url(r'^admin/', admin.site.urls),
-    url(r'^app2/',
-        generic.TemplateView.as_view(template_name='sample_app2.html')),
     url(r'^$',
         generic.TemplateView.as_view(template_name='sample_app.html')),
 ]
