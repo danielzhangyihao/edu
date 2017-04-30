@@ -1,1 +1,5 @@
 /edu/settings/dev.py
+/node_modules/*
+/edu/static/bundles/local
+*.pyc
+*.pyo
