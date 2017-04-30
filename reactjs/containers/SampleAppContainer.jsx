@@ -9,7 +9,7 @@ export default class SampleAppContainer extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-12">
-            <Headline>Sample App1!</Headline>
+            <Headline>Sample App!</Headline>
           </div>
         </div>
       </div>
