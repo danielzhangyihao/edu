@@ -28,7 +28,7 @@ def register(request):
             return redirect(home)
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
-    return render(request, 'user/signup.html', locals())
+    return render(request, 'signup.html', locals())
 
 def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
