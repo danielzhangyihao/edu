@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import validate_email
 from user.models import MyUser
+from django.core.mail import send_mail
 
 class RegistrationForm(forms.Form):
 	last_name = forms.CharField(label='Last name', max_length=100)
@@ -31,10 +32,4 @@ class RegistrationForm(forms.Form):
 		return u
 
 	def sendEmail(self, datas):
-		c = Context({'activation_code':datas['activation_key'],'username':datas['username']})
-		f = open(MEDIA_ROOT+datas['email_path'], 'r')
-		t = Template(f.read())
-		f.close()
-		message=t.render(c)
-		#print unicode(message).encode('utf8')
-		send_mail(datas['email_subject'], message, 'yourdomain <no-reply@yourdomain.com>', [datas['email']], fail_silently=False)
+		send_mail(datas['email_subject'], "Please activate your account with this activation_code:" + datas['activation_key'], 'yourdomain <no-reply@yourdomain.com>', [datas['email']], fail_silently=False)
