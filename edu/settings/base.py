@@ -120,9 +120,3 @@ WEBPACK_LOADER = {
     }
 }
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
