@@ -62,3 +62,7 @@ def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     secret_key = get_random_string(20, chars)
     return hashlib.sha256((secret_key + username).encode('utf-8')).hexdigest()[:5]
+
+def login(request):
+    #@TODO: Fill in request handling logic
+    return render(request, 'login.html', locals())

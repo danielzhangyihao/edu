@@ -22,9 +22,10 @@ urlpatterns = [
 	url(r'^user/', include('user.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
     url(r'^signin/', user_views.signin, name='signin'),
+    url(r'^login/', user_views.login, name='login'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',
-        generic.TemplateView.as_view(template_name='sample_app.html')),
+        generic.TemplateView.as_view(template_name='landing.html')),
     url(r'^home/',
         generic.TemplateView.as_view(template_name='index.html')),
 ]
