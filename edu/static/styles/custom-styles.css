@@ -1,0 +1,40 @@
+.navbar {
+    margin-bottom:0px;
+}
+
+.client {
+	height:240px;
+}
+
+.course-img {
+	width:100%; 
+	height:100%; 
+	padding-bottom:1.5%
+}
+
+.active-course-type {
+	color: #ADD8E6;
+}
+
+.light-blue {
+	background-color:#ADD8E6
+}
+
+.white-text, p.white-text {
+	color: white;
+}
+
+.padded-badge {
+	padding:8px; 
+	margin-bottom:5px;
+}
+
+.hpanel .orange-background {
+	background-color:#ffcc00;
+}
+
+.hpanel .gray-thick-border {
+	background-color: #ffcc00; 
+	border-width:5px; 
+	border-color:gray;
+}
