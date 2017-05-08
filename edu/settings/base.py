@@ -120,3 +120,8 @@ WEBPACK_LOADER = {
     }
 }
 
+#Authentication backends
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+        'django.contrib.auth.backends.AllowAllUsersModelBackend',
+    )

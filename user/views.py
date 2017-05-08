@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from .forms import RegistrationForm
+from .forms import RegistrationForm, SigninForm
 import hashlib
 import random
 from django.utils.crypto import get_random_string
 from django.shortcuts import redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.backends import AllowAllUsersModelBackend
 
 # Create your views here.
 def register(request):
@@ -28,7 +31,32 @@ def register(request):
             return redirect('/home/')
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
-    return render(request, 'signup.html', locals())
+    return render(request, 'signup2.html', locals())
+
+#def activate(request):
+
+def signin(request):
+    signin_form = SigninForm()
+    if request.method == 'POST':
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['email']
+            password= form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/home/')
+            else: 
+                signin_form = form
+                messages.warning(request, 'Please correct the error below.')
+                return redirect('/home/')
+        else:
+            signin_form = form
+    return render(request, 'signin.html', locals())
+
+def signout(request):
+    logout(request)
+    redirect('/home/')
 
 def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'

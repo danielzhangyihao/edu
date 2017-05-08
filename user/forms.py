@@ -27,7 +27,7 @@ class RegistrationForm(forms.Form):
 	def save(self, datas):
 		u = django.contrib.auth.get_user_model().objects.create_user(datas['email'],
                                      datas['password1'], datas['last_name'], datas['first_name'])
-		
+
 		u.activation_key=datas['activation_key']
 		u.key_expires=datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
 		u.save()
@@ -35,3 +35,7 @@ class RegistrationForm(forms.Form):
 
 	def sendEmail(self, datas):
 		send_mail(datas['email_subject'], "Please activate your account with this activation_code:" + datas['activation_key'], 'yourdomain <no-reply@yourdomain.com>', [datas['email']], fail_silently=False)
+
+class SigninForm(forms.Form):
+	email=forms.EmailField(label="Email",widget=forms.EmailInput(attrs={'placeholder': 'Email','class':'form-control input-perso'}),max_length=100,error_messages={'invalid': ("Email invalide.")},validators=[validate_email])
+	password=forms.CharField(label='Password', max_length=50, min_length=6, widget=forms.PasswordInput)
