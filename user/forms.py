@@ -2,6 +2,8 @@ from django import forms
 from django.core.validators import validate_email
 from user.models import MyUser
 from django.core.mail import send_mail
+import django.contrib.auth
+import datetime
 
 class RegistrationForm(forms.Form):
 	last_name = forms.CharField(label='Last name', max_length=100)
@@ -23,9 +25,9 @@ class RegistrationForm(forms.Form):
 		return self.cleaned_data
 
 	def save(self, datas):
-		u = settings.AUTH_USER_MODEL.objects.create_user(datas['email'],
+		u = django.contrib.auth.get_user_model().objects.create_user(datas['email'],
                                      datas['password1'], datas['last_name'], datas['first_name'])
-		u.is_active = False
+		
 		u.activation_key=datas['activation_key']
 		u.key_expires=datetime.datetime.strftime(datetime.datetime.now() + datetime.timedelta(days=2), "%Y-%m-%d %H:%M:%S")
 		u.save()

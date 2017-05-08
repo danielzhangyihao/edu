@@ -16,10 +16,11 @@ class MyUserManager(BaseUserManager):
 
         user = self.model(
             email=self.normalize_email(email),
-            last_name = self.last_name,
-            first_name = self.first_name
+            last_name = last_name,
+            first_name = first_name
         )
 
+        user.is_active = False
         user.set_password(password)
         user.save(using=self._db)
         return user

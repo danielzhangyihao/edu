@@ -3,11 +3,12 @@ from .forms import RegistrationForm
 import hashlib
 import random
 from django.utils.crypto import get_random_string
+from django.shortcuts import redirect
 
 # Create your views here.
 def register(request):
     if request.user.is_authenticated():
-        return redirect(home)
+        return redirect('/home/')
     registration_form = RegistrationForm()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -18,14 +19,13 @@ def register(request):
             datas['email']=form.cleaned_data['email']
             datas['password1']=form.cleaned_data['password1']
             datas['activation_key']= generate_activation_key(datas['email'])
-            datas['email_path']="/ActivationEmail.txt"
             datas['email_subject']="Activation your account"
 
             form.sendEmail(datas)
             form.save(datas) #Save the user and his profile
 
             request.session['registered']=True #For display purposes
-            return redirect(home)
+            return redirect('/home/')
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
     return render(request, 'signup.html', locals())
