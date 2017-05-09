@@ -22,6 +22,7 @@ urlpatterns = [
 	url(r'^user/', include('user.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
     url(r'^signin/', user_views.signin, name='signin'),
+    url(r'^signout/', user_views.signout, name='signout'),
     url(r'^login/', user_views.login, name='login'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',

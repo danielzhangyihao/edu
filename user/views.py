@@ -31,7 +31,7 @@ def register(request):
             return redirect('/home/')
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
-    return render(request, 'signup2.html', locals())
+    return render(request, 'signup.html', locals())
 
 #def activate(request):
 
@@ -52,11 +52,11 @@ def signin(request):
                 return redirect('/home/')
         else:
             signin_form = form
-    return render(request, 'signin.html', locals())
+    return render(request, 'login.html', locals())
 
 def signout(request):
     logout(request)
-    redirect('/home/')
+    return redirect('/home/')
 
 def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
