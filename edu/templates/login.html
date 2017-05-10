@@ -39,22 +39,24 @@
             </div>
             <div class="hpanel">
                 <div class="panel-body">
-                    <form id="loginForm" method="post">
+                    <form id="loginForm" action="/login/" method="post">{% csrf_token %}
                         <div class="form-group">
+                            {{ signin_form.email.errors }}
                             <label class="control-label" for="username">Username</label>
-                            <input type="text" placeholder="username" title="Please enter you username" required="" value="" name="username" id="username" class="form-control">
-                            <span class="help-block small">The username OR email you used to sign up for Edu.</span>
+                            {{ signin_form.email }}
+                            <span class="help-block small">The email you used to sign up for Edu.</span>
                         </div>
                         <div class="form-group">
+                            {{ signin_form.password.errors }}
                             <label class="control-label" for="password">Password</label>
-                            <input type="password" title="Please enter your password" required="" value="" name="password" id="password" class="form-control">
+                            {{ signin_form.password }}
                         </div>
                         <div class="checkbox" style="margin-left:20px">
                             <input type="checkbox" class="i-checks" name="remember" checked>
                                  Remember login
                             <p class="help-block small">(if this is a private computer)</p>
                         </div>
-                        <button class="btn btn-neutral btn-block">Login</button>
+                        <input class="btn btn-neutral btn-block" type="submit" value="Login" />
                         <hr>
                         <div class="text-center" style="margin-bottom:5px">Don't have an account?</div>
                         <a class="btn btn-primary btn-block" href="/signup/">Sign Up</a>

@@ -39,3 +39,6 @@ class RegistrationForm(forms.Form):
 class SigninForm(forms.Form):
 	email=forms.EmailField(label="Email",widget=forms.EmailInput(attrs={'placeholder': 'Email','class':'form-control input-perso'}),max_length=100,error_messages={'invalid': ("Email invalide.")},validators=[validate_email])
 	password=forms.CharField(label='Password', max_length=50, min_length=6, widget=forms.PasswordInput)
+
+class ActivationForm(forms.Form):
+	activation_code=forms.CharField(label='Activation code', min_length=5)

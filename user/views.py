@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from .forms import RegistrationForm, SigninForm
+from .forms import RegistrationForm, SigninForm, ActivationForm
 import hashlib
 import random
 from django.utils.crypto import get_random_string
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.backends import AllowAllUsersModelBackend
+from django.utils import timezone
 
 # Create your views here.
 def register(request):
@@ -33,9 +33,35 @@ def register(request):
             registration_form = form #Display form with error messages (incorrect fields, etc)
     return render(request, 'signup.html', locals())
 
-#def activate(request):
+def activate(request):
+    if not request.user.is_authenticated():
+        return redirect('/home/')
+    activation_form = ActivationForm()
+    if request.method == 'POST':
+        form = ActivationForm(request.POST)
+        if form.is_valid():
+            activation_code = form.cleaned_data['activation_code']
+            activation_expired = False
+            already_active = False
+            if request.user.is_active == False:
+                if timezone.now() > request.user.key_expires:
+                    activation_expired = true
+                elif request.user.activation_key == activation_code: 
+                    request.user.is_active = true
+                    request.user.save()
+                    return redirect('/home/')
+                else:
+                    messages.warning(request, 'wrong code')
+            else:
+                already_active = True
+        else:
+            activation_form = form
+    return render(request, 'activation.html', locals())
+
 
 def signin(request):
+    if request.user.is_authenticated():
+        return redirect('/home/')
     signin_form = SigninForm()
     if request.method == 'POST':
         form = SigninForm(request.POST)
@@ -49,20 +75,15 @@ def signin(request):
             else: 
                 signin_form = form
                 messages.warning(request, 'Please correct the error below.')
-                return redirect('/home/')
         else:
             signin_form = form
     return render(request, 'login.html', locals())
 
 def signout(request):
     logout(request)
-    return redirect('/home/')
+    return redirect('/')
 
 def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     secret_key = get_random_string(20, chars)
     return hashlib.sha256((secret_key + username).encode('utf-8')).hexdigest()[:5]
-
-def login(request):
-    #@TODO: Fill in request handling logic
-    return render(request, 'login.html', locals())

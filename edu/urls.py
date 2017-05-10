@@ -21,9 +21,9 @@ from user import views as user_views
 urlpatterns = [
 	url(r'^user/', include('user.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
-    url(r'^signin/', user_views.signin, name='signin'),
     url(r'^signout/', user_views.signout, name='signout'),
-    url(r'^login/', user_views.login, name='login'),
+    url(r'^login/', user_views.signin, name='login'),
+    url(r'^activate/', user_views.activate, name='activate'),
     url(r'^admin/', admin.site.urls),
     url(r'^$',
         generic.TemplateView.as_view(template_name='landing.html')),
