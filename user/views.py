@@ -11,7 +11,10 @@ from django.utils import timezone
 # Create your views here.
 def register(request):
     if request.user.is_authenticated():
-        return redirect('/home/')
+        if request.user.is_active == False:
+            return redirect('/activate')
+        else:
+            return redirect('/home/')
     registration_form = RegistrationForm()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -28,32 +31,31 @@ def register(request):
             form.save(datas) #Save the user and his profile
 
             request.session['registered']=True #For display purposes
-            return redirect('/home/')
+            return redirect('/activate')
         else:
             registration_form = form #Display form with error messages (incorrect fields, etc)
     return render(request, 'signup.html', locals())
 
 def activate(request):
     if not request.user.is_authenticated():
-        return redirect('/home/')
+        return redirect('/home')
+    if request.user.is_active == True:
+        messages.info(request, 'already activated')
+        return redirect('/home')
     activation_form = ActivationForm()
     if request.method == 'POST':
         form = ActivationForm(request.POST)
         if form.is_valid():
             activation_code = form.cleaned_data['activation_code']
-            activation_expired = False
-            already_active = False
-            if request.user.is_active == False:
-                if timezone.now() > request.user.key_expires:
-                    activation_expired = true
-                elif request.user.activation_key == activation_code: 
-                    request.user.is_active = true
-                    request.user.save()
-                    return redirect('/home/')
-                else:
-                    messages.warning(request, 'wrong code')
+            if timezone.now() > request.user.key_expires:
+                messages.warning(request, 'activation code expired')
+            elif request.user.activation_key == activation_code: 
+                request.user.is_active = true
+                request.user.save()
+                messages.success(request, 'activated successfully')
+                return redirect('/home/')
             else:
-                already_active = True
+                messages.warning(request, 'wrong code')
         else:
             activation_form = form
     return render(request, 'activation.html', locals())
@@ -61,7 +63,10 @@ def activate(request):
 
 def signin(request):
     if request.user.is_authenticated():
-        return redirect('/home/')
+        if request.user.is_active == False:
+            return redirect('/activate')
+        else:
+            return redirect('/home/')
     signin_form = SigninForm()
     if request.method == 'POST':
         form = SigninForm(request.POST)
@@ -71,10 +76,13 @@ def signin(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/home/')
+                if user.is_active == False:
+                    return redirect('/activate')
+                else:
+                    return redirect('/home/')
             else: 
                 signin_form = form
-                messages.warning(request, 'Please correct the error below.')
+                messages.warning(request, 'incorrect credentials')
         else:
             signin_form = form
     return render(request, 'login.html', locals())
