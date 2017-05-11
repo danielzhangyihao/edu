@@ -14,7 +14,7 @@ def register(request):
         if request.user.is_active == False:
             return redirect('/activate')
         else:
-            return redirect('/home/')
+            return redirect('/')
     registration_form = RegistrationForm()
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -29,6 +29,8 @@ def register(request):
 
             form.sendEmail(datas)
             form.save(datas) #Save the user and his profile
+            user = authenticate(username=datas['email'], password=datas['password1'])
+            login(request, user)
 
             request.session['registered']=True #For display purposes
             return redirect('/activate')
@@ -38,10 +40,10 @@ def register(request):
 
 def activate(request):
     if not request.user.is_authenticated():
-        return redirect('/home')
+        return redirect('/')
     if request.user.is_active == True:
         messages.info(request, 'already activated')
-        return redirect('/home')
+        return redirect('/')
     activation_form = ActivationForm()
     if request.method == 'POST':
         form = ActivationForm(request.POST)
@@ -53,7 +55,7 @@ def activate(request):
                 request.user.is_active = true
                 request.user.save()
                 messages.success(request, 'activated successfully')
-                return redirect('/home/')
+                return redirect('/')
             else:
                 messages.warning(request, 'wrong code')
         else:
@@ -66,7 +68,7 @@ def signin(request):
         if request.user.is_active == False:
             return redirect('/activate')
         else:
-            return redirect('/home/')
+            return redirect('/')
     signin_form = SigninForm()
     if request.method == 'POST':
         form = SigninForm(request.POST)
@@ -79,7 +81,7 @@ def signin(request):
                 if user.is_active == False:
                     return redirect('/activate')
                 else:
-                    return redirect('/home/')
+                    return redirect('/')
             else: 
                 signin_form = form
                 messages.warning(request, 'incorrect credentials')
