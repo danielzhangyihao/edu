@@ -3,67 +3,17 @@
 
 {% block main %}
 
-<html>
-<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <!-- Page title -->
-    <title>EDU APP</title>
-
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!--<link rel="shortcut icon" type="image/ico" href="favicon.ico" />-->
-
-    <!-- Vendor styles -->
-    <link rel="stylesheet" href="/static/vendor/fontawesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="/static/vendor/metisMenu/dist/metisMenu.css" />
-    <link rel="stylesheet" href="/static/vendor/animate.css/animate.css" />
-    <link rel="stylesheet" href="/static/vendor/bootstrap/dist/css/bootstrap.css" />
-
-    <!-- App styles -->
-    <link rel="stylesheet" href="/static/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
-    <link rel="stylesheet" href="/static/fonts/pe-icon-7-stroke/css/helper.css" />
-    <link rel="stylesheet" href="/static/styles/style.css">
-    <link rel="stylesheet" href="/static/styles/custom-styles.css">
-
-</head>
-
-<body class="landing-page">
-
-<nav class="navbar navbar-default" style="background-color:#ADD8E6">
-    <div class="container">
-        <div class="navbar-header">
-            <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a href="index.html" class="navbar-brand" style="background-color:#ADD8E6">EDU APP</a>
-            <div class="brand-desc">
-                Game changing education 
-            </div>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-right">
-                {% if request.user.is_authenticated %}
-                <li><a href="/logout">Signout</a></li>
-                {% else %}
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Signup</a></li>
-                {% endif %}
-            </ul>
-        </div>
-    </div>
-</nav>
 
 <section class="light-blue">
     <div class="container">
     <div class="row">
         <div class="col-lg-6 col-lg-offset-3">
-	        <div class="hpanel orange-background">
+        <div class="text-center white-text">
+            <img src="http://simpleicon.com/wp-content/uploads/facebook-2.png" style="height:300px;"></img>
+        </div>
+	        <!--
+            <div class="hpanel orange-background">
 	            <div class="panel-body gray-thick-border orange-background">
 	            	<h2 class="text-center white-text"><img src="http://simpleicon.com/wp-content/uploads/facebook-2.png" style="height:50px;"></img> | Some Chinese Words</h2>
 	            	<div class="row">
@@ -89,6 +39,7 @@
 
 	            </div>
 	        </div>
+            -->
         </div>
     </div>
 
@@ -133,9 +84,6 @@
     });
 </script>
 
-
-</body>
-</html>
 
 {% render_bundle 'vendors' %}
 {% render_bundle 'HomePage' %}
