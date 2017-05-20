@@ -29,4 +29,6 @@ urlpatterns = [
         generic.TemplateView.as_view(template_name='landing.html')),
     url(r'^home/',
         generic.TemplateView.as_view(template_name='index.html')),
+    url(r'^about/',
+        generic.TemplateView.as_view(template_name='about.html')),
 ]
