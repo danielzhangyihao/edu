@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def register(request):
@@ -38,9 +39,8 @@ def register(request):
             registration_form = form #Display form with error messages (incorrect fields, etc)
     return render(request, 'signup.html', locals())
 
+@login_required(login_url='/login/')
 def activate(request):
-    if not request.user.is_authenticated():
-        return redirect('/')
     if request.user.is_active == True:
         messages.info(request, 'already activated')
         return redirect('/')
