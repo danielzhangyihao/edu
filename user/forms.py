@@ -18,9 +18,13 @@ class RegistrationForm(forms.Form):
 	def clean(self):
 		password1 = self.cleaned_data.get('password1')
 		password2 = self.cleaned_data.get('password2')
+		email = self.cleaned_data.get('email')
+
+		if django.contrib.auth.get_user_model().objects.filter(email=email).exists():
+			raise forms.ValidationError({'email':["Email already exists"]})
 
 		if password1 and password2 and password1 != password2:
-			raise forms.ValidationError("Passwords don't match")
+			raise forms.ValidationError({'password1':["Passwords don't match"]})
 
 		return self.cleaned_data
 
