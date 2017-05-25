@@ -31,4 +31,10 @@ urlpatterns = [
         generic.TemplateView.as_view(template_name='index.html')),
     url(r'^about/',
         generic.TemplateView.as_view(template_name='about.html')),
+    url(r'^courses/',
+        generic.TemplateView.as_view(template_name='courses.html')),   
+    url(r'^course/',
+        generic.TemplateView.as_view(template_name='course_page.html')),   
+    url(r'^settings/',
+        generic.TemplateView.as_view(template_name='settings.html')),   
 ]

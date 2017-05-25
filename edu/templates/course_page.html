@@ -1,0 +1,239 @@
+{% extends "base.html" %}
+{% load render_bundle from webpack_loader %}
+
+{% block main %}
+
+
+<style>
+#wrapper {
+    margin:0px;
+}
+</style>
+
+<div id="wrapper">
+
+    <div class="normalheader transition">
+        <div class="hpanel">
+            <div class="panel-body">
+
+                <h2 class="font-light m-b-xs">
+                    CPA Course
+                </h2>
+                <small>Useful short description of what the course should be.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <div class="row">
+
+            <div class="col-md-8">
+
+                <div class="font-bold m-b-sm">
+                    Live Stream
+                </div>
+
+                <div class="hpanel">
+                    <div class="panel-body" style="height:400px">
+                        <h2 class="m-t-none">CPA Course Live Stream (Weekly at 2PM)</h2>
+                        <div class="small m-t-xs">
+                            <strong>Presented by:</strong> Anthony Novic<br>
+                        </div>
+
+
+
+                        <div class="m-t-md"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="display: block; overflow: hidden; border: 0px; margin: 0px; top: 0px; left: 0px; bottom: 0px; right: 0px; height: 100%; width: 100%; position: absolute; pointer-events: none; z-index: -1;"></iframe>
+                            <canvas id="lineOptions" height="250" style="display: block; height: 125px; width: 627px;" width="1254"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="hpanel">
+
+                    <div class="panel-body">
+
+                        <p>
+                            <strong>Course Resources</strong>
+                        </p>
+
+                        <div class="table-responsive">
+                        <table class="table table-hover table-bordered table-striped">
+                            <tbody>
+                            <tr>
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Homework sheet 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    10.02.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Test Practice 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    02.03.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Homework sheet 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    10.02.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Test Practice 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    02.03.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>                            
+                            <tr>
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Homework sheet 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    10.02.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>
+                            <tr>
+
+                                <td class="issue-info">
+                                    <a href="#">
+                                        Test Practice 1
+                                    </a>
+                                    <br>
+                                    <small>
+                                        Contains homework stuff about sheet 1 and useful questions for the quiz.
+                                    </small>
+                                </td>
+                                <td>
+                                    02.03.2015
+                                </td>
+                                <td class="text-right">
+                                    <button class="btn btn-default btn-xs"> Download</button>
+                                </td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-4">
+
+                <div class="font-bold m-b-sm">
+                    Meet the Teachers
+                </div>
+
+                <div class="hpanel stats">
+                    <div class="panel-body">
+
+                        <div>
+                            <img src="/static/images/logo.png"></img>
+                        </div>
+
+                        <p>
+                            <strong>Background</strong>: This guy is a super legit teacher who talk about this and that and other stuff. This guy is a super legit teacher who talk about this and that and other stuff.
+                        </p>       
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Vendor scripts -->
+<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/vendor/metisMenu/dist/metisMenu.min.js"></script>
+<script src="/static/vendor/iCheck/icheck.min.js"></script>
+<script src="/static/vendor/sparkline/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.8/handlebars.min.js"></script>
+
+
+<!-- App scripts -->
+<script src="/static/scripts/homer.js"></script>
+
+<!-- Local script for menu handle -->
+<!-- It can be also directive -->
+<script>
+    $(document).ready(function () {
+
+        // Page scrolling feature
+        $('a.page-scroll').bind('click', function(event) {
+            var link = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $(link.attr('href')).offset().top - 50
+            }, 500);
+            event.preventDefault();
+        });
+
+        $('body').scrollspy({
+            target: '.navbar-fixed-top',
+            offset: 80
+        });
+
+    });
+</script>
+
+
+{% render_bundle 'vendors' %}
+{% endblock %}

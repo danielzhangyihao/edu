@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+
+<link rel="stylesheet" href="/static/vendor/xeditable/bootstrap3-editable/css/bootstrap-editable.css">
+<link rel="stylesheet" href="/static/vendor/sweetalert/lib/sweet-alert.css" />
+
+<style>
+#wrapper {
+    margin:0px;
+}
+</style>
+
+<!-- Main Wrapper -->
+<div id="wrapper">
+
+    <div class="normalheader transition animated fadeIn">
+        <div class="hpanel">
+            <div class="panel-body">
+
+                <h2 class="font-light m-b-xs">
+                    Settings
+                </h2>
+                <small>Check here to see and modify your EDU settings. </small>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        User Settings
+                    </div>
+                    <div class="panel-body">
+                        <div>
+
+                            <table id="user" class="table table-bordered table-striped" style="clear: both">
+                                <tbody>
+                                <tr>
+                                    <td width="35%">Last Name</td>
+                                    <td width="65%"><a href="#" id="lastName" data-type="text" data-pk="1" data-title="Enter last name" class="editable editable-click" style="display: inline;">{{request.user.last_name}}</a></td>
+                                </tr>
+                                <tr>
+                                    <td width="35%">First Name</td>
+                                    <td width="65%"><a href="#" id="firstName" data-type="text" data-pk="1" data-title="Enter first name" class="editable editable-click" style="display: inline;">{{request.user.first_name}}</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-6">
+                <div class="hpanel">
+                    <div class="panel-heading">
+                        Update Password
+                    </div>
+                    <div class="panel-body float-e-margins">
+
+                        <div class="form-group">
+                            <label class="control-label" for="password">Old Password</label>
+                            <input type="password" id="old"  title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control input-sm">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="password">New Password</label>
+                            <input type="password" id="new" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control input-sm">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label"for="password">Confirm Password</label>
+                            <input type="password" id="confirm" title="Please enter your password" placeholder="******" required="" value="" name="password" id="password" class="form-control input-sm">
+                        </div>
+
+                        <div class="text-center">            
+                            <button class="btn btn-primary btn-sm" onClick="updatePassword()">
+                                Update Password
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <br>
+</div>
+
+
+
+
+
+<!-- Vendor scripts -->
+<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/vendor/metisMenu/dist/metisMenu.min.js"></script>
+<script src="/static/vendor/iCheck/icheck.min.js"></script>
+<script src="/static/vendor/sparkline/index.js"></script>
+
+<!-- App scripts -->
+<script src="/static/scripts/homer.js"></script>
+<script src="/static/vendor/xeditable/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="/static/vendor/sweetalert/lib/sweet-alert.min.js"></script>
+
+<script>
+//turn to inline mode
+$.fn.editable.defaults.mode = 'inline';
+$(document).ready(function() {
+
+
+    $('#lastName').editable({
+        title : 'Enter New Value',
+        url: '/settings/update/',
+
+        success : function(response, newValue) {
+            console.log(response, newValue);
+            toastr.success("Updated last name!");
+        }
+    });
+
+    
+    $('#firstName').editable({
+        title : 'Enter New Value',
+        url: '/settings/update/',
+
+        success : function(response, newValue) {
+            console.log(response, newValue);
+            toastr.success("Updated first name!");
+
+        }
+    });
+
+
+
+
+});
+
+</script>
+
+
+<script type="text/javascript">
+    function updatePassword() {
+
+        if ($("#new").val() != $("#confirm").val()) {
+            toastr.error("The passwords don't match!");
+            return;
+        }
+        
+        if ($("#new").val() == "") {
+            toastr.error("Password cannot be empty!");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/settings/update_password/",
+            data: {
+                oldPassword: $("#old").val(),
+                newPassword: $("#new").val()
+            },
+            success: function(result) {
+                console.log(result);
+                result = JSON.parse(result);
+                console.log(result.status);
+                if (result.status == "failure") {
+                    swal({
+                        title: "Error!",
+                        text: result.error,
+                        type: "error"
+                    });   
+                    return;                  
+                }
+                swal({
+                    title: "Password Updated!",
+                    text: "",
+                    type: "success"
+                }); 
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
+
+{% endblock %}

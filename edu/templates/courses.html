@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load render_bundle from webpack_loader %}
+
+{% block main %}
+
+<style>
+
+#wrapper {
+    margin: 0px;
+}
+
+.dashboard-tab-container {
+    height: 61px; 
+    border-bottom: 1px solid rgb(207, 215, 217); 
+    margin-bottom: 28px; 
+    padding: 24px 28px 0px; 
+    background-color: rgb(255, 255, 255);
+}
+
+.dashboard-tab {
+    display: inline-block; position: relative; cursor: pointer; margin-right: 51px; padding: 0px 2px 20px 0px; font-size: 15px; font-weight: 600; text-transform: uppercase;  letter-spacing: 1px;
+}
+
+.active-tab {
+    color: rgb(0, 185, 161);
+}
+
+.dashboard-tab:active, .dashboard-tab:focus {
+    color: rgb(0, 185, 161);
+}
+
+.contact-panel .course-img {
+    width:100%;
+}
+
+</style>
+
+<div id="CoursesPage"></div>
+
+
+<!-- Vendor scripts -->
+<script src="/static/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/static/vendor/jquery-ui/jquery-ui.min.js"></script>
+<script src="/static/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="/static/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/static/vendor/metisMenu/dist/metisMenu.min.js"></script>
+<script src="/static/vendor/iCheck/icheck.min.js"></script>
+<script src="/static/vendor/sparkline/index.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.8/handlebars.min.js"></script>
+
+
+
+<!-- App scripts -->
+<script src="/static/scripts/homer.js"></script>
+
+
+<!-- Local script for menu handle -->
+<!-- It can be also directive -->
+<script>
+    $(document).ready(function () {
+
+        // Page scrolling feature
+        $('a.page-scroll').bind('click', function(event) {
+            var link = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $(link.attr('href')).offset().top - 50
+            }, 500);
+            event.preventDefault();
+        });
+
+        $('body').scrollspy({
+            target: '.navbar-fixed-top',
+            offset: 80
+        });
+
+    });
+</script>
+
+
+{% render_bundle 'vendors' %}
+{% render_bundle 'CoursesPage' %}
+{% endblock %}
