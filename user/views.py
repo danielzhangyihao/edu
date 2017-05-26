@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 # Create your views here.
 def register(request):
@@ -97,3 +98,22 @@ def generate_activation_key(username):
     chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)'
     secret_key = get_random_string(20, chars)
     return hashlib.sha256((secret_key + username).encode('utf-8')).hexdigest()[:5]
+
+@login_required(login_url='/login/')
+def update_password(request):
+    if(request.method == 'POST'):
+        old_password = request.POST.get('oldPassword')
+        if request.user.check_password(old_password):
+            request.user.set_password(request.POST.get('newPassword'))
+            request.user.save()
+            data = {
+                'status': True
+            }
+            return JsonResponse(data)
+        else:
+            data = {
+                'status': False
+            }
+            return JsonResponse(data)
+            
+

@@ -37,4 +37,6 @@ urlpatterns = [
         generic.TemplateView.as_view(template_name='course_page.html')),   
     url(r'^settings/',
         generic.TemplateView.as_view(template_name='settings.html')),   
+    url(r'^update_password/',
+        user_views.update_password, name='update_password'),
 ]
