@@ -61,11 +61,9 @@
             </div>
             <div class="hpanel">
                 <div class="panel-body">
-                    <form id="loginForm" action="/signup/" method="post">{% csrf_token %}
                         <div class="form-group">
-                            <form action="/activate/" method="post">
-                                {% csrf_token %}
-                               {% if messages %}
+                            <form action="/activate/" method="post">{% csrf_token %}
+                                {% if messages %}
                                     <ul class="messages">
                                         {% for message in messages %}
                                         <li{% if message.tags %} class="error-message-li"{% endif %}>
@@ -76,20 +74,15 @@
                                     </ul>
                                 {% endif %}
 
-                                {{ activation_form }}
+                                <label class="control-label" for="activation_code">Activation code: </label>
+                                {{ activation_form.activation_code }}
                                 <input type="submit" value="Submit" />
-
-
                             </form>
-
-                            <input class="btn btn-primary btn-block" type="submit" value="ACTIVATE" />
                         </div>
-                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
 
 

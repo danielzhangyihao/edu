@@ -50,14 +50,14 @@ def activate(request):
         if form.is_valid():
             activation_code = form.cleaned_data['activation_code']
             if timezone.now() > request.user.key_expires:
-                messages.warning(request, 'activation code expired')
+                messages.error(request, 'activation code expired')
             elif request.user.activation_key == activation_code: 
                 request.user.is_active = true
                 request.user.save()
                 messages.success(request, 'activated successfully')
                 return redirect('/')
             else:
-                messages.warning(request, 'wrong code')
+                messages.error(request, 'wrong code')
         else:
             activation_form = form
     return render(request, 'activation.html', locals())
