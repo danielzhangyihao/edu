@@ -131,8 +131,10 @@ $(document).ready(function() {
 
     $('#lastName').editable({
         title : 'Enter New Value',
-        url: '/settings/update/',
-
+        url: '/update_lastName/',
+        data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
         success : function(response, newValue) {
             console.log(response, newValue);
             toastr.success("Updated last name!");
@@ -142,17 +144,15 @@ $(document).ready(function() {
     
     $('#firstName').editable({
         title : 'Enter New Value',
-        url: '/settings/update/',
-
+        url: '/update_firstName/',
+        data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
         success : function(response, newValue) {
             console.log(response, newValue);
             toastr.success("Updated first name!");
         }
     });
-
-
-
-
 });
 
 </script>

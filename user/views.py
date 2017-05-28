@@ -115,5 +115,28 @@ def update_password(request):
                 'status': False
             }
             return JsonResponse(data)
+
+@login_required(login_url='/login/')
+def update_lastName(request):
+    if(request.method == 'POST'):
+        new_lastName = request.POST.get('lastName')
+        request.user.last_name = new_lastName
+        request.user.save()
+        data = {
+            'status': True
+        }
+        return JsonResponse(data)
+
+@login_required(login_url='/login/')
+def update_firstName(request):
+    if(request.method == 'POST'):
+        new_firstName = request.POST.get('firstName')
+        request.user.first_name = new_firstName
+        request.user.save()
+        data = {
+            'status': True
+        }
+        return JsonResponse(data)
+        
             
 
