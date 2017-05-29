@@ -44,7 +44,7 @@ def register(request):
 def activate(request):
     if request.user.is_active == True:
         messages.info(request, 'already activated')
-        return redirect('/')
+        return redirect('/courses')
     activation_form = ActivationForm()
     if request.method == 'POST':
         form = ActivationForm(request.POST)
@@ -56,7 +56,7 @@ def activate(request):
                 request.user.is_active = true
                 request.user.save()
                 messages.success(request, 'activated successfully')
-                return redirect('/')
+                return redirect('/courses')
             else:
                 messages.error(request, 'wrong code')
         else:
@@ -82,7 +82,7 @@ def signin(request):
                 if user.is_active == False:
                     return redirect('/activate')
                 else:
-                    return redirect('/')
+                    return redirect('/courses')
             else: 
                 signin_form = form
                 messages.warning(request, 'incorrect credentials')
