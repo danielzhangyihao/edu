@@ -10,6 +10,10 @@
 #wrapper {
     margin:0px;
 }
+
+.toast-success {
+  color: blue;
+}
 </style>
 
 <!-- Main Wrapper -->
@@ -126,18 +130,26 @@
 <script>
 //turn to inline mode
 $.fn.editable.defaults.mode = 'inline';
+
+
+
 $(document).ready(function() {
 
-
+    sweetAlertInitialize()
     $('#lastName').editable({
         title : 'Enter New Value',
         url: '/update_lastName/',
-        data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
+        params: function(params) {
+            params.csrfmiddlewaretoken = '{{ csrf_token }}';
+            return params;
+        },
         success : function(response, newValue) {
             console.log(response, newValue);
-            toastr.success("Updated last name!");
+            swal({
+                title: "Success!",
+                text: "Updated last name!",
+                type: "success"
+            }); 
         }
     });
 
@@ -145,12 +157,17 @@ $(document).ready(function() {
     $('#firstName').editable({
         title : 'Enter New Value',
         url: '/update_firstName/',
-        data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}'
-            },
+        params: function(params) {
+            params.csrfmiddlewaretoken = '{{ csrf_token }}';
+            return params;
+        },
         success : function(response, newValue) {
             console.log(response, newValue);
-            toastr.success("Updated first name!");
+            swal({
+                title: "Success!",
+                text: "Updated last name!",
+                type: "success"
+            }); 
         }
     });
 });
@@ -162,12 +179,20 @@ $(document).ready(function() {
     function updatePassword() {
 
         if ($("#new").val() != $("#confirm").val()) {
-            toastr.error("The passwords don't match!");
+            swal({
+                title: "Error!",
+                text: "The passwords don't match!",
+                type: "error"
+            }); 
             return;
         }
         
         if ($("#new").val() == "") {
-            toastr.error("Password cannot be empty!");
+            swal({
+                title: "Error!",
+                text: "The passwords cannot be empty!",
+                type: "error"
+            }); 
             return;
         }
 
