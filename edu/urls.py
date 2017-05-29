@@ -43,4 +43,5 @@ urlpatterns = [
         user_views.update_firstName, name='update_firstName'),
     url(r'^update_lastName/',
         user_views.update_lastName, name='update_lastName'),
+    url(r'^education/', include('education.urls')),
 ]
