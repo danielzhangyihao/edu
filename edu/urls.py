@@ -20,6 +20,7 @@ from user import views as user_views
 
 urlpatterns = [
 	url(r'^user/', include('user.urls')),
+    url(r'^education/', include('education.urls')),
 	url(r'^signup/', user_views.register, name='signup'),
     url(r'^signout/', user_views.signout, name='signout'),
     url(r'^login/', user_views.signin, name='login'),
@@ -30,9 +31,7 @@ urlpatterns = [
     url(r'^home/',
         generic.TemplateView.as_view(template_name='index.html')),
     url(r'^about/',
-        generic.TemplateView.as_view(template_name='about.html')),
-    url(r'^courses/',
-        generic.TemplateView.as_view(template_name='courses.html')),   
+        generic.TemplateView.as_view(template_name='about.html')),   
     url(r'^course/',
         generic.TemplateView.as_view(template_name='course_page.html')),   
     url(r'^settings/',

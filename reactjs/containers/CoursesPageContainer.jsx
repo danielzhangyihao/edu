@@ -36,37 +36,20 @@ export default class CoursesPageContainer extends React.Component {
                 'teacherName': 'cool guy'
             }]
         }
+        */
 
         // And then you can uncomment this code
-        $.get("/get_courses/", function(result) {
+        $.get("/education/get_courses/", function(result) {
             console.log(result);
+            console.log(result.data);
             this.setState({
                 myCourses: JSON.parse(result).myCourses,
                 allCourses: JSON.parse(result).allCourses,
                 loaded: true
             })
         }.bind(this));
-        */
-        this.setState({ 
-            'myCourses': [{
-                'name': 'fakename', 
-                'price': 80, 
-                'numBought': 300, 
-                'salesEndDate': '2017-05-12', 
-                'numSpotsLeft': 20,
-                'teacherName': 'cool guy'
-            }],
-            'allCourses': [{
-                'name': 'fakename', 
-                'price': 80, 
-                'numBought': 300, 
-                'salesEndDate': '2017-05-12', 
-                'numSpotsLeft': 20,
-                'teacherName': 'cool guy'
-            }]
-        })
-
-
+        
+        
     }
 
     setFilter(filter) {
@@ -88,7 +71,7 @@ export default class CoursesPageContainer extends React.Component {
     }
 
     render() {
-
+        console.log(this.state.myCourses);
         let courseNodes;
         if (!this.state.loaded) {
             courseNodes = (
@@ -124,8 +107,8 @@ export default class CoursesPageContainer extends React.Component {
                                     <img className="course-img" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/topics/ml/large-icon.png?auto=format%2Ccompress&dpr=1&fit=crop&w=225&h=130">
                                     </img>
                                     <hr />
-                                    <h5 className="text-muted font-bold m-b-xs">{course.name} <small>({course.numBought} people bought this!)</small></h5>
-                                    <p>Taught by: {course.teacherName}</p>
+                                    <h5 className="text-muted font-bold m-b-xs">{course.lesson_name} <small>(999 people bought this!)</small></h5>
+                                    <p>Taught by: abc</p>
                                     <p>Class Start: May 5th</p>
                                 </div></a>
                                 <div className="panel-footer contact-footer text-center">
@@ -142,10 +125,10 @@ export default class CoursesPageContainer extends React.Component {
                                     <img className="course-img" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/topics/ml/large-icon.png?auto=format%2Ccompress&dpr=1&fit=crop&w=225&h=130">
                                     </img>
                                     <hr />
-                                    <h5 className="text-muted font-bold m-b-xs">{course.name} <small>({course.numBought} people bought this!)</small></h5>
-                                    <p>Taught by: {course.teacherName}</p>
+                                    <h5 className="text-muted font-bold m-b-xs">{course.lesson_name} <small>(999 people bought this!)</small></h5>
+                                    <p>Taught by: abc</p>
                                     <p>Class Start: May 5th</p>
-                                    <p><b>Spots Left: {course.numSpotsLeft}</b></p>
+                                    <p><b>Spots Left: 200</b></p>
 
                                 </div>
                                 <div className="panel-footer contact-footer text-center">
