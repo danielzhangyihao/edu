@@ -40,11 +40,11 @@ export default class CoursesPageContainer extends React.Component {
 
         // And then you can uncomment this code
         $.get("/education/get_courses/", function(result) {
-            console.log(result);
-            console.log(result.data);
+            console.log('Resultss', result);
+            console.log('parsed results', JSON.parse(result.myCourses));
             this.setState({
-                myCourses: JSON.parse(result).myCourses,
-                allCourses: JSON.parse(result).allCourses,
+                myCourses: JSON.parse(result.myCourses),
+                allCourses: JSON.parse(result.allCourse),
                 loaded: true
             })
         }.bind(this));
@@ -71,7 +71,6 @@ export default class CoursesPageContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state.myCourses);
         let courseNodes;
         if (!this.state.loaded) {
             courseNodes = (
@@ -80,6 +79,9 @@ export default class CoursesPageContainer extends React.Component {
                 </div>
             )
         }
+        console.log(this.state.loaded);
+        console.log(this.state.displayType);
+        console.log(this.state.myCourses);
 
         let coursesToRender = [];
         if (this.state.displayType == "myCourses") {
