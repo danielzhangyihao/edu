@@ -43,8 +43,8 @@ export default class CoursesPageContainer extends React.Component {
             console.log('Resultss', result);
             //console.log('parsed results', JSON.parse(result.myCourses));
             this.setState({
-                myCourses: result.myCourses,
-                allCourses: result.allCourses,
+                myCourses: JSON.parse(result.myCourses),
+                allCourses: JSON.parse(result.allCourses),
                 loaded: true
             })
         }.bind(this));
@@ -85,9 +85,9 @@ export default class CoursesPageContainer extends React.Component {
 
         let coursesToRender = [];
         if (this.state.displayType == "myCourses") {
-            coursesToRender = this.state.myCourses || [];
+            coursesToRender = this.state.myCourses;
         } else if (this.state.displayType == "allCourses") {
-            coursesToRender = this.state.allCourses || [];
+            coursesToRender = this.state.allCourses;
         }
 
         if (coursesToRender.length == 0) {
