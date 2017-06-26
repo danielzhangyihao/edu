@@ -41,10 +41,10 @@ export default class CoursesPageContainer extends React.Component {
         // And then you can uncomment this code
         $.get("/education/get_courses/", function(result) {
             console.log('Resultss', result);
-            console.log('parsed results', JSON.parse(result.myCourses));
+            //console.log('parsed results', JSON.parse(result.myCourses));
             this.setState({
-                myCourses: JSON.parse(result.myCourses),
-                allCourses: JSON.parse(result.allCourse),
+                myCourses: result.myCourses,
+                allCourses: result.allCourses,
                 loaded: true
             })
         }.bind(this));
