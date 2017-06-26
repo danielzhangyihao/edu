@@ -85,9 +85,9 @@ export default class CoursesPageContainer extends React.Component {
 
         let coursesToRender = [];
         if (this.state.displayType == "myCourses") {
-            coursesToRender = this.state.myCourses;
+            coursesToRender = this.state.myCourses || [];
         } else if (this.state.displayType == "allCourses") {
-            coursesToRender = this.state.allCourses;
+            coursesToRender = this.state.allCourses || [];
         }
 
         if (coursesToRender.length == 0) {
