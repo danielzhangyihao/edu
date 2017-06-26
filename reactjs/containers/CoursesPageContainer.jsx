@@ -109,9 +109,11 @@ export default class CoursesPageContainer extends React.Component {
                                     <img className="course-img" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera.s3.amazonaws.com/topics/ml/large-icon.png?auto=format%2Ccompress&dpr=1&fit=crop&w=225&h=130">
                                     </img>
                                     <hr />
-                                    <h5 className="text-muted font-bold m-b-xs">{course.lesson_name} <small>(999 people bought this!)</small></h5>
+                                    <h5 className="text-muted font-bold m-b-xs">{course.fields.lesson_name} <small>(999 people bought this!)</small></h5>
                                     <p>Taught by: abc</p>
-                                    <p>Class Start: May 5th</p>
+                                    <p>Class Start: {course.fields.start_date}</p>
+                                    <p>Class End: {course.fields.end_date}</p>
+                                    <p>Class Price: {course.fields.price}</p>
                                 </div></a>
                                 <div className="panel-footer contact-footer text-center">
                                     <a href="/course"><button className="btn btn-primary">Go To Class</button></a>
