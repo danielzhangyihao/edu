@@ -131,12 +131,12 @@ export default class CoursesPageContainer extends React.Component {
                                     <hr />
                                     <h5 className="text-muted font-bold m-b-xs">{course.lesson_name} <small>(999 people bought this!)</small></h5>
                                     <p>Taught by: abc</p>
-                                    <p>Class Start: May 5th</p>
-                                    <p><b>Spots Left: 200</b></p>
-
+                                    <p>Class Start: {course.fields.start_date}</p>
+                                    <p>Class End: {course.fields.end_date}</p>
+                                    <p>Class Price: {course.fields.price}</p>
                                 </div>
                                 <div className="panel-footer contact-footer text-center">
-                                    <button className="btn btn-success">BUY <small>(${course.price})</small></button>
+                                    <button className="btn btn-success">BUY <small>(${course.fields.price})</small></button>
                                 </div>
                             </div></a>
                         </div>
