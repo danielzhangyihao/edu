@@ -24,4 +24,4 @@ WEBPACK_LOADER = {
     }
 }
 
-ALLOWED_HOSTS = ['www.51yaoguo.com', '51yaoguo.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost','47.94.232.35']
