@@ -114,6 +114,8 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'edu/static/'), # We do this so that django's collectstatic copies or our bundles to the STATIC_ROOT or syncs them to whatever storage we use.
 )
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'edu/static/')
+
 WEBPACK_LOADER = {
     'DEFAULT': {
         'BUNDLE_DIR_NAME': 'bundles/local/',
