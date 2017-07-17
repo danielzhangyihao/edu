@@ -9,10 +9,10 @@ DEBUG = False
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'edu_db',
-        'USER': 'yihaozhang',
+        'NAME': 'edu_prod_db',
+        'USER': 'edu',
         'PASSWORD': '19921009',
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
