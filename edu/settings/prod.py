@@ -23,3 +23,5 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats-prod.json'),
     }
 }
+
+ALLOWED_HOSTS = ['www.51yaoguo.com', '51yaoguo.com']
