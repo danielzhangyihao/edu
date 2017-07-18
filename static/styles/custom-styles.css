@@ -1,0 +1,69 @@
+.navbar {
+    margin-bottom:0px;
+}
+
+.client {
+	height:240px;
+}
+
+.course-img {
+	width:100%; 
+	height:100%; 
+	padding-bottom:1.5%
+}
+
+.active-course-type {
+	color: #ADD8E6;
+}
+
+.light-blue {
+	background-color:#ADD8E6
+}
+
+.white-text, p.white-text {
+	color: white;
+}
+
+.padded-badge {
+	padding:8px; 
+	margin-bottom:5px;
+}
+
+.hpanel .orange-background {
+	background-color:#ffcc00;
+}
+
+.hpanel .gray-thick-border {
+	background-color: #ffcc00; 
+	border-width:5px; 
+	border-color:gray;
+}
+
+.form-group input {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    border-color: #eaeaea!important;
+}
+
+.error-message-li, .errors li {
+    list-style-type: none;
+    color:red;
+}
+
+#wrapper {
+    width:100%;
+}
